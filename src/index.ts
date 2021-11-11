@@ -16,6 +16,7 @@ app.use(cors());
 
 app.use('/mail', mailRoutes);
 app.use('/sms', smsRoutes);
+app.get('/ping', (_, res) => res.sendStatus(204));
 
 app.use((_, res) => {
 	return res.status(404).end();

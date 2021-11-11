@@ -1,19 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mailRoutes = exports.send = void 0;
+exports.mailRoutes = void 0;
 const express_1 = require("express");
 const express_validator_1 = require("express-validator");
 require("express-async-errors");
 const nodemailer_1 = require("nodemailer");
 const routes = (0, express_1.Router)();
 routes.post('/', [(0, express_validator_1.body)('email').isEmail().notEmpty(), (0, express_validator_1.body)('message').isString().notEmpty(), (0, express_validator_1.body)('subject').isString().notEmpty()], async (req, res) => {
+    var _a;
     const errors = (0, express_validator_1.validationResult)(req);
     if (!errors.isEmpty()) {
         return res.status(422).json(errors.array());
     }
     const transport = (0, nodemailer_1.createTransport)({
         host: process.env.MAIL_HOST,
-        port: process.env.MAIL_PORT?.toNumber(),
+        port: (_a = process.env.MAIL_PORT) === null || _a === void 0 ? void 0 : _a.toNumber(),
         auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS,
@@ -59,5 +60,4 @@ function send(transport, config) {
         });
     });
 }
-exports.send = send;
 exports.mailRoutes = routes;

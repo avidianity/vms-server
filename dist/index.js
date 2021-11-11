@@ -36,6 +36,7 @@ app.use((0, express_1.urlencoded)({ extended: true }));
 app.use((0, cors_1.default)());
 app.use('/mail', mail_1.mailRoutes);
 app.use('/sms', sms_1.smsRoutes);
+app.get('/ping', (_, res) => res.sendStatus(204));
 app.use((_, res) => {
     return res.status(404).end();
 });

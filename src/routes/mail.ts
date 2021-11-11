@@ -68,7 +68,7 @@ type SendOptions = {
 	subject: string;
 };
 
-export function send(transport: Transporter<SMTPTransport.SentMessageInfo>, config: SendOptions) {
+function send(transport: Transporter<SMTPTransport.SentMessageInfo>, config: SendOptions) {
 	return new Promise<SMTPTransport.SentMessageInfo>((resolve, reject) => {
 		transport.sendMail(config, (error, result) => {
 			if (error) {

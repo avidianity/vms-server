@@ -39,7 +39,7 @@ router.post('/', [
     }
     catch (error) {
         const response = (0, helpers_1.getErrorResponse)(error);
-        return res.status(response?.status || 500).json(response?.data);
+        return res.status((response === null || response === void 0 ? void 0 : response.status) || 500).json(response === null || response === void 0 ? void 0 : response.data);
     }
 });
 exports.smsRoutes = router;
